@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { supabase } from '../../services/supabase';
 import { Profile } from '../../types/profile';
-import { User, Shield, Bell, Settings, HelpCircle, LogOut, ChevronRight, Save } from 'lucide-react';
+import { User, Shield, LogOut, ChevronRight, Save } from 'lucide-react';
 
 export default function AccountPage() {
   const [isEditing, setIsEditing] = useState(false);
