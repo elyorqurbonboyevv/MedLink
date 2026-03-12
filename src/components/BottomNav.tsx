@@ -1,20 +1,21 @@
 import { Home, Calendar, Heart, Mail, User } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const tabs = [
-  { icon: Home, label: "Home", path: "/" },
-  { icon: Calendar, label: "Appointments", path: "/appointments" },
-  { icon: Heart, label: "Health", path: "/health" },
-  { icon: Mail, label: "Messages", path: "/messages" },
-  { icon: User, label: "Account", path: "/account" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
-  // Hide on certain routes
+  const tabs = [
+    { icon: Home, label: t.nav.home, path: "/" },
+    { icon: Calendar, label: t.nav.appointments, path: "/appointments" },
+    { icon: Heart, label: t.nav.health, path: "/health" },
+    { icon: Mail, label: t.nav.messages, path: "/messages" },
+    { icon: User, label: t.nav.account, path: "/account" },
+  ];
+
   const hiddenRoutes = ["/search", "/doctor/", "/book/", "/triage", "/dashboard"];
   if (hiddenRoutes.some((r) => location.pathname.startsWith(r))) return null;
 
@@ -41,7 +42,7 @@ const BottomNav = () => {
                 strokeWidth={isActive ? 2.2 : 1.8}
               />
               <span
-                className={`text-[10px] font-medium ${isActive ? "text-primary" : "text-muted-foreground"}`}
+                className={`text-[10px] font-medium leading-tight ${isActive ? "text-primary" : "text-muted-foreground"}`}
               >
                 {tab.label}
               </span>
