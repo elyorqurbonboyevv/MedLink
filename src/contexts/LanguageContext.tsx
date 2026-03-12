@@ -2,6 +2,10 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 export type Language = "en" | "uz" | "ru";
 
+export function formatUZS(amount: number): string {
+  return amount.toLocaleString("uz-UZ").replace(/,/g, " ") + " UZS";
+}
+
 export const translations = {
   en: {
     nav: {
@@ -42,8 +46,25 @@ export const translations = {
     ai: {
       title: "MedLink AI",
       placeholder: "Describe your symptoms...",
-      greeting: "Hello! I'm MedLink AI. How can I help you today?",
+      greeting: "Hello! I'm MedLink AI. I'll ask you a few questions to help determine the right level of care.\n\n⚠️ This is not medical advice. Always consult a licensed healthcare professional.",
       fallback: "Thank you for sharing. I've logged your symptoms. Would you like me to help find a specialist?",
+    },
+    triage: {
+      title: "AI Symptom Checker",
+      disclaimer: "⚠️ This is not medical advice. Always consult a licensed professional.",
+      placeholder: "Describe your symptoms...",
+    },
+    doctor: {
+      bookAppointment: "BOOK AN APPOINTMENT",
+      locations: "Locations",
+      profile: "Profile",
+      openingHours: "Opening hours & contact",
+      viewMore: "View more",
+      consultationFee: "Consultation Fee",
+      initialVisit: "Initial consultation",
+      followUp: "Follow-up visit",
+      specialist: "Specialist consultation",
+      currency: "UZS",
     },
   },
   uz: {
@@ -85,8 +106,25 @@ export const translations = {
     ai: {
       title: "MedLink AI",
       placeholder: "Belgilaringizni tasvirlab bering...",
-      greeting: "Salom! Men MedLink AI. Bugun qanday yordam bera olaman?",
+      greeting: "Salom! Men MedLink AI. Davolanish darajasini aniqlash uchun bir necha savol beraman.\n\n⚠️ Bu tibbiy maslahat emas. Har doim litsenziyalangan mutaxassisga murojaat qiling.",
       fallback: "Ma'lumot uchun rahmat. Belgilaringiz qayd etildi. Mutaxassis topishga yordam beraymi?",
+    },
+    triage: {
+      title: "AI Belgi Tekshiruvi",
+      disclaimer: "⚠️ Bu tibbiy maslahat emas. Har doim litsenziyalangan mutaxassisga murojaat qiling.",
+      placeholder: "Belgilaringizni tasvirlab bering...",
+    },
+    doctor: {
+      bookAppointment: "UCHRASHUVGA YOZILISH",
+      locations: "Manzillar",
+      profile: "Profil",
+      openingHours: "Ish vaqti va aloqa",
+      viewMore: "Ko'proq",
+      consultationFee: "Konsultatsiya narxi",
+      initialVisit: "Dastlabki konsultatsiya",
+      followUp: "Takroriy qabul",
+      specialist: "Mutaxassis konsultatsiyasi",
+      currency: "UZS",
     },
   },
   ru: {
@@ -128,8 +166,25 @@ export const translations = {
     ai: {
       title: "MedLink AI",
       placeholder: "Опишите ваши симптомы...",
-      greeting: "Здравствуйте! Я MedLink AI. Чем могу помочь сегодня?",
+      greeting: "Здравствуйте! Я MedLink AI. Задам вам несколько вопросов для оценки состояния.\n\n⚠️ Это не медицинский совет. Всегда консультируйтесь с врачом.",
       fallback: "Спасибо, что поделились. Симптомы записаны. Помочь найти специалиста?",
+    },
+    triage: {
+      title: "AI Чекер симптомов",
+      disclaimer: "⚠️ Это не медицинский совет. Всегда консультируйтесь с врачом.",
+      placeholder: "Опишите ваши симптомы...",
+    },
+    doctor: {
+      bookAppointment: "ЗАПИСАТЬСЯ НА ПРИЁМ",
+      locations: "Адреса",
+      profile: "Профиль",
+      openingHours: "Часы работы и контакты",
+      viewMore: "Подробнее",
+      consultationFee: "Стоимость консультации",
+      initialVisit: "Первичная консультация",
+      followUp: "Повторный приём",
+      specialist: "Консультация специалиста",
+      currency: "UZS",
     },
   },
 };

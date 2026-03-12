@@ -2,23 +2,12 @@ import { ArrowLeft, Send, AlertTriangle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Message {
   role: "assistant" | "user";
   content: string;
 }
-
-const initialMessages: Message[] = [
-  {
-    role: "assistant",
-    content:
-      "Hello! I'm the DocTec AI Symptom Checker. I'll ask you a few questions to help determine the right level of care.\n\n⚠️ **This is not medical advice.** Always consult a licensed healthcare professional.",
-  },
-  {
-    role: "assistant",
-    content: "What is your main symptom or concern today?",
-  },
-];
 
 const mockResponses: Record<string, string> = {
   headache:
@@ -31,6 +20,19 @@ const mockResponses: Record<string, string> = {
 
 const TriagePage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+
+  const initialMessages: Message[] = [
+    {
+      role: "assistant",
+      content: t.ai.greeting,
+    },
+    {
+      role: "assistant",
+      content: "What is your main symptom or concern today?",
+    },
+  ];
+
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState("");
   const [step, setStep] = useState(0);
@@ -41,7 +43,6 @@ const TriagePage = () => {
     const userMsg: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, userMsg]);
 
-    // Mock AI response
     const lower = input.toLowerCase();
     let response = mockResponses.default;
     if (lower.includes("headache")) response = mockResponses.headache;
@@ -71,7 +72,7 @@ const TriagePage = () => {
           <div className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-primary-foreground" />
             <h1 className="text-lg font-bold text-primary-foreground">
-              AI Symptom Checker
+              {t.triage.title}
             </h1>
           </div>
         </div>
@@ -80,7 +81,7 @@ const TriagePage = () => {
       {/* Disclaimer banner */}
       <div className="bg-warning/10 px-4 py-2">
         <p className="text-xs text-center text-muted-foreground">
-          ⚠️ This is not medical advice. Always consult a licensed professional.
+          {t.triage.disclaimer}
         </p>
       </div>
 
@@ -122,7 +123,7 @@ const TriagePage = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Describe your symptoms..."
+            placeholder={t.triage.placeholder}
             className="flex-1 rounded-full border border-border bg-background px-4 py-2.5 text-sm outline-none focus:border-primary"
           />
           <button

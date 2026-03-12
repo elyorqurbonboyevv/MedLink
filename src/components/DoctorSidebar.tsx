@@ -39,7 +39,7 @@ export function DoctorSidebar() {
             <Stethoscope className="h-4 w-4 text-primary-foreground" />
           </div>
           {!collapsed && (
-            <span className="text-lg font-bold text-foreground">DocTec</span>
+            <span className="text-lg font-bold text-foreground">MedLink</span>
           )}
         </div>
 
